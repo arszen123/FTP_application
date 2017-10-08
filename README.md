@@ -1,2 +1,2 @@
 # FTP_application
-Application for FTP connection
+Using <a href="http://www.jcraft.com/jsch/">JSch</a> for an FTP application which supports SFTP.
