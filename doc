@@ -1,0 +1,5 @@
+#What I have already tried:
+
+1. URLConnection (Password isn't encrypted)
+2. FTPUrlConnection (Password isn't encrypted)
+3. JSch (TLSv1.2 protocol)
