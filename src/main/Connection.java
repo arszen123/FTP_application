@@ -4,7 +4,7 @@ import java.io.IOException;
 import com.jcraft.jsch.*;
 
 
-public class Connection{
+class Connection{
 	private Session session = null;
 	private Channel channel = null;
 	private ChannelSftp channelSftp = null;
@@ -14,8 +14,7 @@ public class Connection{
 		this.connectionData  = connectionData;
 	}
 
-	
-	public void connect() throws JSchException, SftpException, IOException{
+	public ChannelSftp connect() throws JSchException, SftpException, IOException{
 		JSch jSch = new JSch();
 			session = jSch.getSession(connectionData.getUserName(),
 					connectionData.getHostName(),Integer.parseInt(connectionData.getPortNumber()));
@@ -27,6 +26,7 @@ public class Connection{
 			channel = session.openChannel("sftp");
 			channel.connect();
 			channelSftp = (ChannelSftp) channel;
+			return channelSftp;
 	}
 	
 	public void close(){
