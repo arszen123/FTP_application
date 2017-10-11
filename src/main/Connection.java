@@ -16,17 +16,22 @@ class Connection{
 
 	public ChannelSftp connect() throws JSchException, SftpException, IOException{
 		JSch jSch = new JSch();
-			session = jSch.getSession(connectionData.getUserName(),
-					connectionData.getHostName(),Integer.parseInt(connectionData.getPortNumber()));
-			java.util.Properties config = new java.util.Properties(); 
-			config.put("StrictHostKeyChecking", "no");
-			session.setConfig(config);
-			session.setPassword(connectionData.getPassword());
-			session.connect();
-			channel = session.openChannel("sftp");
-			channel.connect();
-			channelSftp = (ChannelSftp) channel;
-			return channelSftp;
+		session = jSch.getSession(connectionData.getUserName(),
+				connectionData.getHostName(),Integer.parseInt(connectionData.getPortNumber()));
+
+		java.util.Properties config = new java.util.Properties(); 
+		config.put("StrictHostKeyChecking", "no");
+
+		session.setConfig(config);
+		session.setPassword(connectionData.getPassword());
+		session.connect();
+
+		channel = session.openChannel("sftp");
+		channel.connect();
+
+		channelSftp = (ChannelSftp) channel;
+
+		return channelSftp;
 	}
 	
 	public void close(){
